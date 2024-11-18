@@ -9,17 +9,25 @@ class CategoryController extends Controller
     
     public function index()
     {
+        //get all the categories from the databases
+        $categories = \App\Models\Category::all()->sortBy('category');
+
+        dd($categories);
+
+        return view('categories.index')->with('categories',$categories);
+
     }
 
     
     public function create()
     {
-        return view('category.create');
+        return view('categories.create');
     }
 
     
     public function store(Request $request)
     {
+        dd($request);
     }
 
     
