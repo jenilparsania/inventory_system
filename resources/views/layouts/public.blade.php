@@ -78,7 +78,8 @@
         </nav>
 
         <main class="py-4">
-            @yield('partials._messages')
+            {{-- @include the messages  --}}
+            @include('partials._messages')
             @yield('content')
         </main>
     </div>

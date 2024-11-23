@@ -12,9 +12,10 @@
 
                         <form action="/categories" method="post">
                             @csrf  <!-- read about it -->
-                            <label for="company"> Category </label>
-                            <input type="text" class="form-control" name="company" title="company"/>
-                            <input type="submit" value="Add Company" class="btn btn-primary btn-lg btn-block" style="margin-top:20px"/>
+
+                            <label for="category"> Category </label>
+                            <input type="text" class="form-control" name="category" title="category"/>
+                            <input type="submit" value="Add Category" class="btn btn-primary btn-lg btn-block" style="margin-top:20px"/>
 
                         </form>
                     </div>

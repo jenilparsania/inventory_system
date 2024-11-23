@@ -18,10 +18,9 @@ return new class extends Migration
             //$table->softDeletes();
             // video 2 : 29:08
             // video 2 : 33:00  (linking company and series)
-            $table->softDelete();
+            $table->softDeletes();
             // it was softDelete 
             //than of the softDelete 
-            
         });
     }
 

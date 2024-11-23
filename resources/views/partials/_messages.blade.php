@@ -3,7 +3,7 @@
 
 @if (Session::has('success'))
     <div class="alert alert-success" role='alert'>
-        <strong> Success : </strong> {{ Session::get('success ')}}
+        <strong> Success : </strong> {{ Session::get('success')}}
         {{-- doulble curly braaces for php  --}}
     </div>
 
