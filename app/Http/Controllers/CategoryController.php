@@ -62,16 +62,52 @@ class CategoryController extends Controller
     
     public function edit(string $id)
     {
+        $category = \App\Models\Category::find($id);
+        if(!$category){
+            dd("no category was found ");
+        }
+
+        return view('categories.edit')->with('category',$category);
     }
 
     
     public function update(Request $request, string $id)
     {
+        $rules = [
+            'category' => 'required|max:50|unique:categories,catory,'.$id
+        ];
+
+        $validator = $this->validate($request,$rules);
+        
+        $category = \App\Models\Category::find($id);
+
+        if(!$category){
+            dd("No category found");
+        }
+        $category->category = $request->request;
+        $category->save();
+
+        Session::flash('success',"A Category has been Updated");
+
+        return redirect()->route('categories.index');
+        
     }
 
    
     public function destroy(string $id)
     {
+
+        $category = \App\Models\Category::find($id);
+
+        if(!$category){
+            dd(" No category found");
+            Session::flash('error','No company found');
+        }else{
+            $category->delete();
+            Session::flash('success','category delete');
+        }
+
+        return redirect()->route('categories.index');
     }
 
     public function confirmDelete(string $id){
