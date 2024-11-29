@@ -12,7 +12,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('categories',App\Http\Controllers\CategoryController::class);
 
-Route::resource('items',ItemController::class);
+Route::resource('items',App\Http\Controllers\ItemController::class);
+
+// Route::resource('items',ItemController::class);
 
 // writing all the paths for the categories 
 

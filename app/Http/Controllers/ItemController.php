@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Session;
+
 class ItemController extends Controller
 {
     /**
@@ -20,6 +22,7 @@ class ItemController extends Controller
     public function create()
     {
         //
+        return view('items.create');
     }
 
     /**
@@ -28,6 +31,28 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         //
+        $rules = [
+            'title' => 'required|max:50|unique:items,title'
+        ];
+
+        $validator = $this->validate($request,$rules);
+
+        $item = new \App\Models\Item;
+
+        $item->title = $request->title;
+        $item->category_id = $request->category_id;
+        $item->description = $request->description;
+        $item->price = $request->price;
+        $item->quantity = $request->quantity;
+        $item->sku = $request->sku;
+        $item->picture = $request->picture;
+        // $item->title = $request->title;
+        $item->save();
+
+        // Flash a succcess message
+        Session::flash('success','A new item has been created');
+
+        return redirect()->route('items.index');
     }
 
     /**
