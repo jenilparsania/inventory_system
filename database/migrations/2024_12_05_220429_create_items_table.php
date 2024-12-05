@@ -8,8 +8,6 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     * category(id from categories), title, description, 
-     * price, quantity, sku, and picture.
      */
     public function up(): void
     {
@@ -22,11 +20,10 @@ return new class extends Migration
             $table->integer('quantity');
             $table->string('sku')->unique();
             $table->string('picture')->nullable();
-
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade');
-            
         });
     }
 

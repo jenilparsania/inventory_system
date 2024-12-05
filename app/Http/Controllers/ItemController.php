@@ -14,6 +14,10 @@ class ItemController extends Controller
     public function index()
     {
         //
+        $items = \App\Models\Item::all()->sortBy('item');
+
+
+        return view('items.index')->with('items',$items);
     }
 
     /**
@@ -22,7 +26,8 @@ class ItemController extends Controller
     public function create()
     {
         //
-        return view('items.create');
+        $categories = \App\Models\Category::all();
+        return view('items.create')->with('categories',$categories);
     }
 
     /**
@@ -85,5 +90,16 @@ class ItemController extends Controller
     public function destroy(string $id)
     {
         //
+        $item = \App\Models\Item::find($id);
+
+        if(!$item){
+            dd("No item found");
+            Session::flash('error','No company found');
+        }else{
+            $item->delete();
+            Session::flash('success','Items delete');
+        }
+
+        return redirect()->route('items.index');
     }
 }

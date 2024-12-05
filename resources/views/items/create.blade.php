@@ -15,11 +15,29 @@
 
                             {{-- <label for="item"> Items </label>
                             <input type="text" class="form-control" name="item" title="item"/> --}}
+                            
+                            {{-- trying to create a drop down for the category_id --}}
 
                             <div class="form-group">
+
+                                <label for="category_id">Category</label>
+                                <select name="category_id" id="category_id">
+                                    <option value="">Select a value </option>
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->id}}">
+                                            {{$category->category}}
+                                        </option>
+
+
+                                    @endforeach
+                                
+                                </select>
+                            </div>
+
+                            {{-- <div class="form-group">
                                 <label for="category_id">ID</label>
                                 <input type="text" name="category_id" id="category_id" class="form-control" value="{{ old('category_id') }}">
-                            </div>
+                            </div> --}}
                             <div class="form-group">
                                 <label for="title">Title</label>
                                 <input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}">
