@@ -84,7 +84,7 @@ class CategoryController extends Controller
         if(!$category){
             dd("No category found");
         }
-        $category->category = $request->request;
+        $category->category = $request->category;   // this was the line I was making an error 
         $category->save();
 
         Session::flash('success',"A Category has been Updated");

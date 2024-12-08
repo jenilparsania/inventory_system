@@ -74,6 +74,14 @@ class ItemController extends Controller
     public function edit(string $id)
     {
         //
+        $item = \App\Models\Item::find($id);
+        $categories = \App\Models\Category::all();
+
+        if(!$item){
+            dd("no item was found");
+        }
+
+        return view('items.edit')->with('item',$item)->with('categories',$categories);
     }
 
     /**
@@ -82,6 +90,28 @@ class ItemController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $rules = [
+            'title' => 'required|max:50|unique:items,title' .$id
+        ];
+
+        $validator = $this->validate($request,$rules);
+
+        $item = \App\Models\Item::find($id);
+
+        $item->title = $request->title;
+        $item->category_id = $request->category_id;
+        $item->description = $request->description;
+        $item->price = $request->price;
+        $item->quantity = $request->quantity;
+        $item->sku = $request->sku;
+        $item->picture = $request->picture;
+        // $item->title = $request->title;
+        $item->save();
+
+        // Flash a succcess message
+        Session::flash('success','A new item has been Updated');
+
+        return redirect()->route('items.index');
     }
 
     /**

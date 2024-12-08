@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"> Companies </div>
+                <div class="card-header"> Items </div>
                 <div class="card-body">
                     @php
                         // dd($companies)
